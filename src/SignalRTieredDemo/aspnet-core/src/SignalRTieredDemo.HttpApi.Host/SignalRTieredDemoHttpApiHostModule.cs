@@ -23,6 +23,7 @@ using Volo.Abp.Caching.StackExchangeRedis;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.EventBus.RabbitMq;
 
 namespace SignalRTieredDemo
 {
@@ -35,6 +36,7 @@ namespace SignalRTieredDemo
         typeof(SignalRTieredDemoEntityFrameworkCoreDbMigrationsModule),
         typeof(AbpAspNetCoreSerilogModule)
         )]
+    [DependsOn(typeof(AbpEventBusRabbitMqModule))]
     public class SignalRTieredDemoHttpApiHostModule : AbpModule
     {
         private const string DefaultCorsPolicyName = "Default";

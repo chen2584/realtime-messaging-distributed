@@ -38,10 +38,13 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Volo.Abp.AspNetCore.SignalR;
+using Volo.Abp.EventBus.RabbitMq;
 
 namespace SignalRTieredDemo.Web
 {
     [DependsOn(
+        typeof(AbpAspNetCoreSignalRModule),
         typeof(SignalRTieredDemoHttpApiModule),
         typeof(SignalRTieredDemoHttpApiClientModule),
         typeof(AbpAspNetCoreAuthenticationOAuthModule),
@@ -55,6 +58,7 @@ namespace SignalRTieredDemo.Web
         typeof(AbpTenantManagementWebModule),
         typeof(AbpAspNetCoreSerilogModule)
         )]
+    [DependsOn(typeof(AbpEventBusRabbitMqModule))]
     public class SignalRTieredDemoWebModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
